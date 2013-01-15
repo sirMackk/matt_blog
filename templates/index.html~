@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for p in posts %}
+
+<h2 class="post"><a class="post" href="{{ p.get_absolute_url">{{ p.title|safe }}</a></h2>
+<p class="timestamp">Written by {{ p.author }} on {{ p.time }}</p>
+<p>{{ p.description|safe }}</p>
+
+{% endfor %}
+<p>
+{% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">Previous</a>
+{% endif %}
+{% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}">Next</a>
+{% endif %}
+
+{% endblock %}
+

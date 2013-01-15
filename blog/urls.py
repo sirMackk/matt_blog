@@ -1,17 +1,22 @@
 from django.conf.urls import patterns, include, url
-
+from blog.settings import DEBUG
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
+from main.models import *
+from feed import theFeed
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'blog.views.home', name='home'),
-    # url(r'^blog/', include('blog.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    (r'^$', 'views.index'),
+    (r'^admin/', include(admin.site.urls)),
+    (r'^(\d{4})/(\d{1,2})/(\d{1,2})/([a-zA-Z0-9_]+)/$', 'views.details'),
+    (r'^category/([\w]+)/$', 'views.category'),
+    (r'^feed/$', theFeed()),
+    (r'^comments/', include('django.contrib.comments.urls')),
+  
 )
+
+if DEBUG:
+    urlpatterns += patterns('', (
+        r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root':'static'}))

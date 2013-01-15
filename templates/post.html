@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load comments %}
+
+{% block title %} matts@codecave:~$ - {{ post.title }}{% endblock %}
+
+{% block content %}
+
+<h1 class="post">{{ post.title }}</h1>
+<p class="timestamp">Written by {{ post.author }} on {{ post.time }}</p>
+<p class="timestamp">Category: {{ post.categories }}</p>
+
+{{ post.body|safe }}
+
+Comments:
+    {% get_comment_list for bleg.post post.id as comment_list %}
+    {% for comment in comment_list %}
+    {{ comment.person_name }}
+    <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
+    <span class="comnum"><a id="c{{ comment.id }}" href="#c{{ comment.id }}">#{{ forloop.counter }}</a></span>
+    <p><b>{{ comment.user_name|escape }}</b> commented, on {{ comment.submit_date|date:"F j, Y" }} at {{ comment.submit_date|date:"P" }}:</p>
+    {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
+    </div>
+    {% endfor %}
+Post a comment:
+{% render_comment_form for bleg.post post.id %}
+
+{% endblock %}
