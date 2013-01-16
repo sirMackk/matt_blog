@@ -10,15 +10,15 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
+    def get_absolute_url(self):
+        return reverse('views.category', args=[str(self.name)])
+
     def __unicode__(self):
         return self.name
 
-    def get_absulute_url(self):
-        return reverse('views.category', args=[str(self.name)])
-
 class Post(models.Model):
     title = models.CharField(max_length=160)
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=100, default='Matt')
     body = models.TextField(blank=True, null=True)
     body_markdown = models.TextField()
     description = models.TextField(blank=True, null=True)
@@ -36,3 +36,6 @@ class Post(models.Model):
         import markdown
         self.body = markdown.markdown(self.body_markdown)
         super(Post, self).save()
+
+    def __unicode__(self):
+        return self.title

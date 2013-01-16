@@ -27,7 +27,7 @@ def index(request):
 
 
 def category(request, category):
-    cats = Post.objects.filter(categories__name=category).order_by('-time')
+    cats = Post.objects.filter(category__name=category).order_by('-time')
     paginator = Paginator(cats, 4)
 
     try:
@@ -53,7 +53,6 @@ def details(request, year, month, day, title):
 	cats = Category.objects.all()
 	recent_posts = Post.objects.order_by('-time')[:4]
 	return render_to_response('post.html', {'post':post, 'recs':recent_posts, 'categories':cats}, context_instance=RequestContext(request))
-
-
+    
 	
 	

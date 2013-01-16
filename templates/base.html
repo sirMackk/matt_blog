@@ -9,7 +9,7 @@
 <meta name="keywords" content="python, django, blog, tutorial, tutorials, data, pydata, data science, analysis, web, web scraping, django development, aws, web development, web-dev, design" />
 </head>
 <body>
-<!-- Layout version: Delaware-->
+<!-- Layout version: Pennsylvania-->
 <div style="position:absolute;height:50%;width:100%;background-color:#fff;top:0;left:0;">
 </div>
 <div id="main">
@@ -33,12 +33,12 @@
             <p class="menu">
             Recent posts:</p>
             {% for rp in recs %}
-            <a href="{{ rp.get_absolute_url }}">{{ rp.title }}</a>
+            <p><a class ='post' href="{{ rp.get_absolute_url }}">{{ rp.title }}</a></p>
             {% endfor %}
             <p class="menu">
             Categories:</p>
             {% for c in categories %}
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            <p><a class='post' href="{{ c.get_absolute_url }}">{{ c.name }}</a></p>
             {% endfor %}
             {% endblock %}
 

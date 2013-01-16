@@ -2,18 +2,16 @@
 
 {% load comments %}
 
-{% block title %} matts@codecave:~$ - {{ post.title }}{% endblock %}
+{% block title %} {{ post.title }}{% endblock %}
 
 {% block content %}
 
 <h1 class="post">{{ post.title }}</h1>
 <p class="timestamp">Written by {{ post.author }} on {{ post.time }}</p>
-<p class="timestamp">Category: {{ post.categories }}</p>
+<p class="timestamp">Category: {{ post.category }}</p>
 
 {{ post.body|safe }}
-
-Comments:
-    {% get_comment_list for bleg.post post.id as comment_list %}
+    {% get_comment_list for main.post post.id as comment_list %}
     {% for comment in comment_list %}
     {{ comment.person_name }}
     <div class="comment_{% cycle odd,even %}" id="c{{ comment.id }}">
@@ -22,7 +20,8 @@ Comments:
     {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
     </div>
     {% endfor %}
-Post a comment:
-{% render_comment_form for bleg.post post.id %}
-
+<p>Post a comment:</p>
+{% with post.get_absolute_url as next %}
+{% render_comment_form for main.post post.id %}
+{% endwith %}
 {% endblock %}

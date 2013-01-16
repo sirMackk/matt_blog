@@ -10,11 +10,10 @@ urlpatterns = patterns('',
 
     (r'^$', 'views.index'),
     (r'^admin/', include(admin.site.urls)),
-    (r'^(\d{4})/(\d{1,2})/(\d{1,2})/([a-zA-Z0-9_]+)/$', 'views.details'),
+    (r'^(\d{4})/(\d{1,2})/(\d{1,2})/([a-zA-Z0-9_-]+)/$', 'views.details'),
     (r'^category/([\w]+)/$', 'views.category'),
     (r'^feed/$', theFeed()),
-    (r'^comments/', include('django.contrib.comments.urls')),
-  
+    (r'^comments/', include('django.contrib.comments.urls')),  
 )
 
 if DEBUG:
