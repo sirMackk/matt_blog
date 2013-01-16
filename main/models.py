@@ -6,6 +6,10 @@ from django.contrib.sitemaps import Sitemap
 class Category(models.Model):
     name = models.CharField(max_length=60)
 
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
     def __unicode__(self):
         return self.name
 
