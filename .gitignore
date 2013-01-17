@@ -1,7 +1,6 @@
 blog/top_secret_key.py
 old/
 static/admin/
-static_files/
 *.save
 tmp/
 main/*.pyc
