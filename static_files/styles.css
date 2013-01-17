@@ -124,7 +124,7 @@ a{
 a.post:visited{
     color:#333;
 }
-a:hover, h2.post:hover, a.post:hover{
+h2.post:hover, a.post:hover{
     color:#fa6900;}
 
 p{

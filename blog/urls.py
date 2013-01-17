@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^category/([\w]+)/$', 'views.category'),
     (r'^feed/$', theFeed()),
     (r'^comments/', include('django.contrib.comments.urls')),  
+    (r'^about/', 'views.about'),
 )
 
 if DEBUG:

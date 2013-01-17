@@ -53,6 +53,9 @@ def details(request, year, month, day, title):
 	cats = Category.objects.all()
 	recent_posts = Post.objects.order_by('-time')[:4]
 	return render_to_response('post.html', {'post':post, 'recs':recent_posts, 'categories':cats}, context_instance=RequestContext(request))
-    
+
+
+def about(request):
+    return render_to_response('about.html')        
 	
 	

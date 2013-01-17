@@ -1,6 +1,6 @@
 # Django settings for blog project.
 import os
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 ROOT = os.path.join(os.path.dirname( __file__ ), '..')
 ADMINS = (
@@ -80,7 +80,11 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = os.environ['DJANGO_SECRET']
+if DEBUG:
+    from top_secret_key import top_secret
+    SECRET_KEY = top_secret.key
+else:
+    SECRET_KEY = os.environ['DJANGO_SECRET']
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -162,8 +166,9 @@ LOGGING = {
     }
 }
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+if not DEBUG:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
 
 if not DEBUG:
     AWS_ACCESS_KEY_ID = os.environ['AWS_KEY_ID']
