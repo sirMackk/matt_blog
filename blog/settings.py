@@ -7,6 +7,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -162,3 +164,9 @@ LOGGING = {
 
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
+
+if not DEBUG:
+    AWS_STORAGE = os.environ['AWS_STORAGE_BUCKET']
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE
+    STATIC_URL = S3_URL
