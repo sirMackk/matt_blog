@@ -1,10 +1,10 @@
 # Django settings for blog project.
 import os
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 ROOT = os.path.join(os.path.dirname( __file__ ), '..')
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Matt', 'c.tairix@gmail.com'),
 )
 
 
