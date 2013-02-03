@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load comments %}
 {% block content %}
-
 {% for p in posts %}
 
+{% get_comment_count for main.post p.id as comment_count %}
 <h2 class="post"><a class="post" href="{{ p.get_absolute_url }}">{{ p.title|safe }}</a></h2>
 <p class="timestamp">Written by {{ p.author }} on {{ p.time }}</p>
-<p>{{ p.description|safe }}</p>
+<p class="timestamp">Category: <a href="{{ p.category.get_absolute_url }}">{{ p.category }}</a> / Number of comments: {{ comment_count }}</p>
+<p class="description">{{ p.description|safe }}</p>
 
 {% endfor %}
 <p>
@@ -16,6 +17,6 @@
 {% if posts.has_next %}
     <a href="?page={{ posts.next_page_number }}">Older posts</a>
 {% endif %}
-
+</p>
 {% endblock %}
 

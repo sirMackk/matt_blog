@@ -26,7 +26,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category)
     slug = models.SlugField(max_length=120, unique=True)
 
-    class Meta: 
+    class Meta:
         ordering = ['-time']
 
     def get_absolute_url(self):
@@ -55,7 +55,7 @@ class Piece(models.Model):
         ordering = ['-time']
 
     def get_absolute_url(self):
-        return reverse('views.portfolio', args=[str(self.slug)])
+        return reverse('views.piece', args=[str(self.slug)])
 
     def save(self):
         import markdown

@@ -58,9 +58,9 @@ def details(request, year, month, day, title):
 def about(request):
     cats = Category.objects.all()
     recent_posts = Post.objects.order_by('-time')[:4]
-
-    return render_to_response('about.html', {'recs':recent_posts,
-         'categories':cats})
+    about = Piece.objects.get(slug="about")
+    return render_to_response('piece.html', {'recs':recent_posts,
+         'categories':cats, 'piece':about})
 
 
 def portfolio(request):

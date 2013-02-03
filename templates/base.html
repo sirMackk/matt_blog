@@ -23,55 +23,62 @@
 </script>
 </head>
 <body>
-<!-- Layout version: Pennsylvania-->
+<!-- Layout version: New Jersey-->
 <div style="position:absolute;height:50%;width:100%;background-color:#fff;top:0;left:0;">
 </div>
 <div id="main">
 
-    
+
     <div id="body">
-    
+
 
         <div id="wrap">
-                <div id="header">
-            
+                <header id="header">
+
             <a id="header_a" href="/feed">
                 <img src="{% static "gears.svg" %}" alt="Logo of gears" />
             </a>
             <h1 id="header_h"><a class="post" href="/">matts@codecave:~$</a></h1>
 
-                </div>
-        
-            <div id="menu"><div style="margin:10px 0;">{% block menu %}
-                <a class="button" href="https://github.com/sirMackk">My GitHub</a></div>  
+                </header>
+
+            <div id="menu">{% block menu %}
+                <ul class="menu_list">
+                    <li class="button_li"><a class="button" href="https://github.com/sirMackk">My GitHub</a></li>
+                    <li class="button_li"><a class="button" href="/portfolio">Portfolio</a></li>
+                </ul>
             <p class="menu">
             Recent posts:</p>
+            <ul class="menu_list">
             {% for rp in recs %}
-            <p><a class ='post' href="{{ rp.get_absolute_url }}">{{ rp.title }}</a></p>
+            <li><a class ='post' href="{{ rp.get_absolute_url }}">{{ rp.title }}</a></li>
             {% endfor %}
+            </ul>
             <p class="menu">
             Categories:</p>
+            <ul class="menu_list">
             {% for c in categories %}
-            <p><a class='post' href="{{ c.get_absolute_url }}">{{ c.name }}</a></p>
+            <li><a class='post' href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
             {% endfor %}
+            </ul>
             {% endblock %}
 
             </div>
             <div id="content">
                 {% block content %}{% endblock %}
             </div>
-            
-        <div id="footer">
+
+        <footer id="footer">
         <p class="footer">{% block footer %}
             &copy; 2013 Matt</p>
-            <a class="post footer" href="about/">[About]</a>{% endblock %}
-            
-        </div>
-    
+            <a class="post footer" href="http://www.mattscodecave.com/about/">[About]</a>{% endblock %}
+
+        </footer>
+
         </div>
 
-    
-    
+
+
 
     </div>
 

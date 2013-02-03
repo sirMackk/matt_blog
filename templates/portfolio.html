@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+<h1 class="post">Portfolio</h1>
+<ul class="gallery_lst">
+{% for p in pieces %}
+  <li><a href="{{ p.get_absolute_url }}"><img src="{{ p.thumbnail }}"></a>{{ p.short }}</li>
+{% endfor %}
+
+</ul>
+<p>
+{% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">Newer posts</a>
+{% endif %}
+{% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}">Older posts</a>
+{% endif %}
+</p>
+{% endblock %}|

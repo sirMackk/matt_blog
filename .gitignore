@@ -16,5 +16,4 @@ bin
 var
 *.tmp
 *.bak
-static_files/
 *.py~

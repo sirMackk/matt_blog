@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block title %} {{ piece.title }}{% endblock %}
+
+{% block content %}
+{% load static from staticfiles %}
+<h1 class="post">{{ piece.title }}</h1>
+<p class="timestamp">Updated by Matt on {{ piece.time }}</p>
+<img src="{{ piece.thumbnail }}">
+{{ piece.body|safe }}
+
+
+{% endblock %}
