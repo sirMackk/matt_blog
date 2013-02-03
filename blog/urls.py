@@ -14,7 +14,9 @@ urlpatterns = patterns('',
     (r'^category/([\w]+)/$', 'views.category'),
     (r'^feed/$', theFeed()),
     (r'^comments/', include('django.contrib.comments.urls')),  
-    (r'^about/', 'views.about'),
+    (r'^about/', 'django.views.generic.simple.direct_to_template', {'template':'templates/about.html'}),
+    (r'^portfolio/$', 'views.portfolio'),
+    (r'^portfolio/([a-z0-9_-]+)/$', 'views.piece'),
 )
 
 if DEBUG:

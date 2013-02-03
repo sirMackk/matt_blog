@@ -1,4 +1,4 @@
-from models import Post, Category
+from models import Post, Category, Piece
 from django.contrib import admin
 from django.template.defaultfilters import slugify
 
@@ -10,4 +10,5 @@ class PostAdmin(admin.ModelAdmin):
     fields = ('title', 'author', 'body_markdown', 'description', 'time', 'category', 'slug')
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
+admin.site.register(Piece)
 

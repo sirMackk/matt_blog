@@ -39,3 +39,28 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+class Piece(models.Model):
+    title = models.CharField(max_length=140)
+    short = models.CharField(max_length=240)
+    body = models.TextField(blank=True, null=True)
+    body_markdown = models.TextField()
+    link = models.CharField(max_length=100)
+    thumbnail = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
+    time = models.DateTimeField(default=datetime.now)
+    slug = models.SlugField(max_length=120, unique=True)
+
+    class Meta:
+        ordering = ['-time']
+
+    def get_absolute_url(self):
+        return reverse('views.portfolio', args=[str(self.slug)])
+
+    def save(self):
+        import markdown
+        self.body = markdown.markdown(self.body_markdown)
+        super(Piece, self).save()
+
+    def __unicode__(self):
+        return self.title
